@@ -10,6 +10,7 @@ import {
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import type { Vehicle } from "../data/vehicles";
+import HeroSearch from "./HeroSearch";
 import VehicleCard from "./VehicleCard";
 
 type Filter = "all" | "electric" | "hybrid" | "gasoline" | "private" | "dealer";
@@ -72,9 +73,9 @@ export default function Catalog({ vehicles }: { vehicles: Vehicle[] }) {
     <section
       id="inventory"
       data-testid="catalog"
-      className="mx-auto max-w-[1440px] scroll-mt-4 px-3 pb-10 pt-0 md:pb-12 lg:px-6 lg:pb-16"
+      className="mx-auto max-w-[1440px] scroll-mt-4 px-3 pb-10 pt-8 md:pb-12 md:pt-12 lg:px-6 lg:pb-16 lg:pt-16"
     >
-      <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <div className="mb-10 flex flex-col justify-between gap-4 md:flex-row md:items-center md:gap-6">
         <LayoutGroup id="inventory-filters">
           <div className="flex min-w-0 items-center gap-2 md:max-w-[60%]">
             <button
@@ -136,22 +137,7 @@ export default function Catalog({ vehicles }: { vehicles: Vehicle[] }) {
             </button>
           </div>
         </LayoutGroup>
-        <div className="flex shrink-0 items-baseline gap-4">
-          <p
-            data-testid="result-count"
-            aria-live="polite"
-            className="text-xs tabular-nums text-subtle"
-          >
-            {visible.length} {visible.length === 1 ? "vehículo" : "vehículos"}
-          </p>
-          <Link
-            href="/autos"
-            data-testid="see-all-inventory"
-            className="text-xs text-muted underline-offset-4 transition-colors duration-150 hover:text-fg hover:underline"
-          >
-            Ver todo el inventario →
-          </Link>
-        </div>
+        <HeroSearch compact />
       </div>
 
       <motion.div
@@ -164,6 +150,23 @@ export default function Catalog({ vehicles }: { vehicles: Vehicle[] }) {
           ))}
         </AnimatePresence>
       </motion.div>
+
+      <div className="mt-6 flex items-baseline justify-center gap-4">
+        <p
+          data-testid="result-count"
+          aria-live="polite"
+          className="text-xs tabular-nums text-subtle"
+        >
+          {visible.length} {visible.length === 1 ? "vehículo" : "vehículos"}
+        </p>
+        <Link
+          href="/autos"
+          data-testid="see-all-inventory"
+          className="text-xs text-muted underline-offset-4 transition-colors duration-150 hover:text-fg hover:underline"
+        >
+          Ver todo el inventario →
+        </Link>
+      </div>
 
       {visible.length === 0 && (
         <p className="py-16 text-center text-sm text-muted">

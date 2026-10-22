@@ -7,7 +7,6 @@ import FinanceCalculator from "./components/FinanceCalculator";
 import FinancingSection from "./components/FinancingSection";
 import Footer from "./components/Footer";
 import Hero from "./components/Hero";
-import HeroSearch from "./components/HeroSearch";
 import { SAMPLE_VEHICLES } from "./data/vehicles";
 
 export default function Home() {
@@ -17,9 +16,6 @@ export default function Home() {
       <SiteHeader />
       <Hero />
       <main className="mx-auto min-h-screen w-full max-w-[1440px] bg-bg text-fg selection:bg-fg selection:text-bg">
-        <div className="pb-10 pt-5 md:pb-12 lg:pb-16">
-          <HeroSearch />
-        </div>
         <Catalog vehicles={SAMPLE_VEHICLES} />
         <FinancingSection />
         <FinanceCalculator />
