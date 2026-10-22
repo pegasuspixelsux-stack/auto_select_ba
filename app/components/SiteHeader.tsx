@@ -24,7 +24,7 @@ export default function SiteHeader() {
         </div>
         <Link
           href="/"
-          aria-label="AUTO SELECT, inicio"
+          aria-label="Tu Próximo Auto, inicio"
           className="absolute left-1/2 -translate-x-1/2"
         >
           <Logo />

@@ -72,18 +72,9 @@ export default function Catalog({ vehicles }: { vehicles: Vehicle[] }) {
     <section
       id="inventory"
       data-testid="catalog"
-      className="mx-auto max-w-[1440px] scroll-mt-4 px-3 pb-24 pt-10 lg:px-6"
+      className="mx-auto max-w-[1440px] scroll-mt-4 px-3 pb-24 pt-0 lg:px-6"
     >
       <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
-        <div>
-          <p className="text-xs font-medium uppercase tracking-widest text-muted">
-            Mercado abierto
-          </p>
-          <h2 className="mt-2 text-balance text-3xl font-light tracking-[-0.02em] lg:text-4xl">
-            Todos los avisos
-          </h2>
-        </div>
-
         <LayoutGroup id="inventory-filters">
           <div className="flex min-w-0 items-center gap-2 md:max-w-[60%]">
             <button
@@ -145,15 +136,23 @@ export default function Catalog({ vehicles }: { vehicles: Vehicle[] }) {
             </button>
           </div>
         </LayoutGroup>
+        <div className="flex shrink-0 items-baseline gap-4">
+          <p
+            data-testid="result-count"
+            aria-live="polite"
+            className="text-xs tabular-nums text-subtle"
+          >
+            {visible.length} {visible.length === 1 ? "vehículo" : "vehículos"}
+          </p>
+          <Link
+            href="/autos"
+            data-testid="see-all-inventory"
+            className="text-xs text-muted underline-offset-4 transition-colors duration-150 hover:text-fg hover:underline"
+          >
+            Ver todo el inventario →
+          </Link>
+        </div>
       </div>
-
-      <p
-        data-testid="result-count"
-        aria-live="polite"
-        className="mb-6 text-xs tabular-nums text-subtle"
-      >
-        {visible.length} {visible.length === 1 ? "vehículo" : "vehículos"}
-      </p>
 
       <motion.div
         layout

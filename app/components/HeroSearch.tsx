@@ -12,11 +12,8 @@ import { useState, type ReactNode } from "react";
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
 
 const QUICK_LINKS = [
-  { label: "Explorar el mercado", href: "#inventory" },
-  { label: "Vender mi vehículo", href: "#" },
-  { label: "Motos", href: "#" },
-  { label: "Clásicos", href: "#" },
-  { label: "Concesionarias", href: "/concesionarias" },
+  { label: "Comprar un auto", href: "#inventory" },
+  { label: "Vender mi auto", href: "#" },
 ];
 const FIELD =
   "w-full rounded-xl border border-line bg-bg/60 px-3 py-2 text-sm text-fg outline-none transition-colors duration-150 placeholder:text-subtle focus:border-fg/40";

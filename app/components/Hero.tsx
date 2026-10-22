@@ -2,19 +2,28 @@
 
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
+import { Star } from "lucide-react";
+import type { ReactNode } from "react";
 
 interface HeroProps {
-  headline?: string;
+  headline?: ReactNode;
   subheadline?: string;
 }
 
 const EASE_OUT = [0.23, 1, 0.32, 1] as const;
+// Placeholder figures; replace with the real Google rating.
+const RATING = "4.9";
+const REVIEW_COUNT = "+200";
 const BACKGROUND_IMAGE = "/hero_image/audi_hero.webp";
 
-
 export default function Hero({
-  headline = "Compra y venta de autos.",
-  subheadline = "Conectate directo con vendedores particulares y concesionarias verificadas. Encontrá tu próximo auto o publicá el tuyo en minutos.",
+  headline = (
+    <>
+      <span className="text-brand">El auto que buscás.</span> La tranquilidad
+      que te falta.
+    </>
+  ),
+  subheadline = "Unidades seleccionadas y verificadas con atención personalizada en showroom. Coordiná tu prueba de manejo hoy.",
 }: HeroProps) {
   const reduce = useReducedMotion();
   const rise = (delay: number, y = 16) => ({
@@ -40,20 +49,54 @@ export default function Hero({
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
       </div>
       <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-center px-3 pb-6 pt-[calc(1.5rem+10vw)] sm:justify-end sm:py-6 lg:justify-center lg:px-6 lg:py-14">
-        <div className="w-1/2 text-left">
+        <div className="w-1/2 text-left sm:w-[45%]">
           <div className="w-fit max-w-full">
+            <motion.p
+              {...rise(0.05, 12)}
+              className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-fg sm:mb-3 sm:text-xs"
+            >
+              <Star
+                aria-hidden
+                className="h-2.5 w-2.5 shrink-0 fill-current text-amber-400 sm:h-3 sm:w-3"
+                strokeWidth={0}
+              />
+              Autos usados certificados
+              <Star
+                aria-hidden
+                className="h-2.5 w-2.5 shrink-0 fill-current text-amber-400 sm:h-3 sm:w-3"
+                strokeWidth={0}
+              />
+            </motion.p>
             <motion.h1
               {...rise(0.15, 24)}
-              className="whitespace-pre-line text-balance text-2xl font-semibold leading-[1.1] tracking-[-0.02em] sm:text-5xl lg:text-6xl"
+              className="text-balance text-[28px] font-semibold leading-[1.08] tracking-[-0.02em] sm:text-5xl lg:text-6xl"
             >
               {headline}
             </motion.h1>
             <motion.p
               {...rise(0.28)}
-              className="mt-2 w-0 min-w-full text-xs leading-relaxed sm:mt-5 sm:text-base text-muted"
+              className="mt-2 w-0 min-w-full text-xs leading-relaxed sm:mt-5 sm:text-xl text-muted"
             >
               {subheadline}
             </motion.p>
+            <motion.div
+              {...rise(0.4)}
+              data-testid="hero-rating"
+              className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-muted sm:mt-5 sm:text-sm"
+            >
+              <span className="font-semibold text-fg">{RATING}</span>
+              <span aria-hidden className="flex gap-0.5 text-amber-400">
+                {Array.from({ length: 5 }, (_, i) => (
+                  <Star
+                    key={i}
+                    className="h-3 w-3 fill-current sm:h-4 sm:w-4"
+                    strokeWidth={0}
+                  />
+                ))}
+              </span>
+              <span className="sr-only">{RATING} de 5 estrellas</span>
+              <span>{REVIEW_COUNT} reseñas en Google</span>
+            </motion.div>
           </div>
         </div>
       </div>
