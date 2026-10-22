@@ -12,8 +12,8 @@ export default function AnnouncementBar({
       data-testid="announcement-bar"
       className="w-full bg-inverse text-on-inverse"
     >
-      <div className="mx-auto max-w-[1440px] whitespace-nowrap px-3 py-2 text-center text-[10px] font-medium sm:py-2.5 sm:text-xs tracking-tight lg:px-6">
-        <span className="sm:hidden">Autos usados certificados · Tigre.</span>
+      <div className="mx-auto max-w-[1440px] px-3 sm:whitespace-nowrap py-2 text-center text-[10px] font-medium sm:py-2.5 sm:text-xs tracking-tight lg:px-6">
+        <span className="sm:hidden">Autos usados certificados · Salón de ventas en Tigre, Zona Norte.</span>
         <span className="hidden sm:inline">{text}</span>{" "}
         <a
           href={href}
