@@ -1,0 +1,239 @@
+"use client";
+
+import { AnimatePresence, LayoutGroup, motion } from "framer-motion";
+import {
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight,
+  SlidersHorizontal,
+} from "lucide-react";
+import Link from "next/link";
+import { useMemo, useRef, useState } from "react";
+import type { Vehicle } from "../data/vehicles";
+import VehicleCard from "./VehicleCard";
+
+type Filter = "all" | "electric" | "hybrid" | "gasoline" | "private" | "dealer";
+
+const FILTERS: { id: Filter; label: string; test: (v: Vehicle) => boolean }[] =
+  [
+    { id: "all", label: "Todos", test: () => true },
+    {
+      id: "electric",
+      label: "Eléctricos",
+      test: (v) => v.fuelType === "Electric",
+    },
+    { id: "hybrid", label: "Híbridos", test: (v) => v.fuelType === "Hybrid" },
+    { id: "gasoline", label: "Nafta", test: (v) => v.fuelType === "Gasoline" },
+    {
+      id: "private",
+      label: "Particulares",
+      test: (v) => v.sellerType === "private",
+    },
+    {
+      id: "dealer",
+      label: "Concesionarias",
+      test: (v) => v.sellerType === "dealer",
+    },
+  ];
+
+const PAGE_SIZE = 8;
+
+export default function Catalog({ vehicles }: { vehicles: Vehicle[] }) {
+  const [filter, setFilter] = useState<Filter>("all");
+  const [page, setPage] = useState(1);
+  const pillsRef = useRef<HTMLDivElement>(null);
+
+  function scrollPills(direction: -1 | 1) {
+    const el = pillsRef.current;
+    if (!el) return;
+    el.scrollBy({ left: direction * el.clientWidth * 0.7, behavior: "smooth" });
+  }
+
+  const visible = useMemo(() => {
+    const active = FILTERS.find((f) => f.id === filter) ?? FILTERS[0];
+    return vehicles.filter(active.test);
+  }, [vehicles, filter]);
+
+  const pageCount = Math.max(1, Math.ceil(visible.length / PAGE_SIZE));
+  const current = Math.min(page, pageCount);
+  const pageItems = visible.slice(
+    (current - 1) * PAGE_SIZE,
+    current * PAGE_SIZE,
+  );
+
+  function goTo(next: number) {
+    setPage(next);
+    document
+      .getElementById("inventory")
+      ?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  return (
+    <section
+      id="inventory"
+      data-testid="catalog"
+      className="mx-auto max-w-[1440px] scroll-mt-4 px-3 pb-24 pt-10 lg:px-6"
+    >
+      <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+        <div>
+          <p className="text-xs font-medium uppercase tracking-widest text-muted">
+            Mercado abierto
+          </p>
+          <h2 className="mt-2 text-balance text-3xl font-light tracking-[-0.02em] lg:text-4xl">
+            Todos los avisos
+          </h2>
+        </div>
+
+        <LayoutGroup id="inventory-filters">
+          <div className="flex min-w-0 items-center gap-2 md:max-w-[60%]">
+            <button
+              type="button"
+              aria-label="Desplazar filtros a la izquierda"
+              onClick={() => scrollPills(-1)}
+              className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line text-muted transition-[color,transform] duration-150 hover:text-fg active:scale-95 md:flex"
+            >
+              <ChevronLeft className="h-4 w-4" strokeWidth={1.75} />
+            </button>
+            <div
+              ref={pillsRef}
+              role="group"
+              aria-label="Filtrar vehículos"
+              className="-mx-3 flex min-w-0 flex-1 snap-x scroll-px-3 gap-2 overflow-x-auto px-3 py-2 [scrollbar-width:none] md:mx-0 md:scroll-px-0 md:px-0 [&::-webkit-scrollbar]:hidden"
+            >
+              {FILTERS.map((f) => {
+                const selected = f.id === filter;
+                return (
+                  <button
+                    key={f.id}
+                    type="button"
+                    data-testid={`filter-${f.id}`}
+                    aria-pressed={selected}
+                    onClick={() => {
+                      setFilter(f.id);
+                      setPage(1);
+                    }}
+                    className={`relative shrink-0 snap-start whitespace-nowrap rounded-full border px-4 py-2 text-xs font-medium transition-[color,border-color,transform] duration-150 active:scale-[0.97] ${
+                      selected
+                        ? "border-transparent text-on-inverse"
+                        : "border-line text-muted hover:border-fg/40 hover:text-fg"
+                    }`}
+                  >
+                    {selected && (
+                      <motion.span
+                        layoutId="filter-pill"
+                        transition={{
+                          type: "spring",
+                          duration: 0.4,
+                          bounce: 0.15,
+                        }}
+                        className="absolute inset-0 rounded-full bg-inverse"
+                      />
+                    )}
+                    <span className="relative">{f.label}</span>
+                  </button>
+                );
+              })}
+              <span aria-hidden className="w-1 shrink-0 md:hidden" />
+            </div>
+            <button
+              type="button"
+              aria-label="Desplazar filtros a la derecha"
+              onClick={() => scrollPills(1)}
+              className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-full border border-line text-muted transition-[color,transform] duration-150 hover:text-fg active:scale-95 md:flex"
+            >
+              <ChevronRight className="h-4 w-4" strokeWidth={1.75} />
+            </button>
+          </div>
+        </LayoutGroup>
+      </div>
+
+      <p
+        data-testid="result-count"
+        aria-live="polite"
+        className="mb-6 text-xs tabular-nums text-subtle"
+      >
+        {visible.length} {visible.length === 1 ? "vehículo" : "vehículos"}
+      </p>
+
+      <motion.div
+        layout
+        className="grid grid-cols-2 gap-3 sm:gap-6 lg:grid-cols-4"
+      >
+        <AnimatePresence mode="popLayout">
+          {pageItems.map((vehicle) => (
+            <VehicleCard key={vehicle.id} vehicle={vehicle} compact="mobile" />
+          ))}
+        </AnimatePresence>
+      </motion.div>
+
+      {visible.length === 0 && (
+        <p className="py-16 text-center text-sm text-muted">
+          Ningún vehículo coincide con este filtro. Probá con otro.
+        </p>
+      )}
+
+      {pageCount > 1 && (
+        <nav
+          aria-label="Paginación"
+          data-testid="pagination"
+          className="mt-12 flex items-center justify-center gap-2"
+        >
+          <button
+            type="button"
+            aria-label="Página anterior"
+            disabled={current === 1}
+            onClick={() => goTo(current - 1)}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted transition-[color,transform] duration-150 hover:text-fg active:scale-95 disabled:pointer-events-none disabled:opacity-40"
+          >
+            <ChevronLeft className="h-4 w-4" strokeWidth={1.75} />
+          </button>
+          {Array.from({ length: pageCount }, (_, i) => i + 1).map((n) => (
+            <button
+              key={n}
+              type="button"
+              aria-label={`Página ${n}`}
+              aria-current={n === current ? "page" : undefined}
+              onClick={() => goTo(n)}
+              className={`h-9 min-w-9 rounded-full px-3 text-xs font-medium tabular-nums transition-[color,background-color,transform] duration-150 active:scale-95 ${
+                n === current
+                  ? "bg-inverse text-on-inverse"
+                  : "border border-line text-muted hover:text-fg"
+              }`}
+            >
+              {n}
+            </button>
+          ))}
+          <button
+            type="button"
+            aria-label="Página siguiente"
+            disabled={current === pageCount}
+            onClick={() => goTo(current + 1)}
+            className="flex h-9 w-9 items-center justify-center rounded-full border border-line text-muted transition-[color,transform] duration-150 hover:text-fg active:scale-95 disabled:pointer-events-none disabled:opacity-40"
+          >
+            <ChevronRight className="h-4 w-4" strokeWidth={1.75} />
+          </button>
+        </nav>
+      )}
+
+      <div className="mt-8 flex justify-center">
+        <Link
+          href="/autos"
+          data-testid="advanced-search-link"
+          className="group inline-flex items-center gap-2 rounded-full border border-line px-6 py-3 text-xs font-semibold uppercase tracking-wider text-fg transition-[border-color,transform] duration-150 hover:border-fg/40 active:scale-95"
+        >
+          <SlidersHorizontal
+            className="h-4 w-4"
+            strokeWidth={1.75}
+            aria-hidden
+          />
+          Búsqueda avanzada
+          <ArrowRight
+            className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1"
+            strokeWidth={1.75}
+            aria-hidden
+          />
+        </Link>
+      </div>
+    </section>
+  );
+}
