@@ -37,7 +37,7 @@ const FILTERS: { id: Filter; label: string; test: (v: Vehicle) => boolean }[] =
     },
   ];
 
-const PAGE_SIZE = 8;
+const PAGE_SIZE = 12;
 
 export default function Catalog({ vehicles }: { vehicles: Vehicle[] }) {
   const [filter, setFilter] = useState<Filter>("all");
