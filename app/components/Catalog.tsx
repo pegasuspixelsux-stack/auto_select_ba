@@ -72,7 +72,7 @@ export default function Catalog({ vehicles }: { vehicles: Vehicle[] }) {
     <section
       id="inventory"
       data-testid="catalog"
-      className="mx-auto max-w-[1440px] scroll-mt-4 px-3 pb-24 pt-0 lg:px-6"
+      className="mx-auto max-w-[1440px] scroll-mt-4 px-3 pb-10 pt-0 md:pb-12 lg:px-6 lg:pb-16"
     >
       <div className="mb-10 flex flex-col justify-between gap-6 md:flex-row md:items-end">
         <LayoutGroup id="inventory-filters">

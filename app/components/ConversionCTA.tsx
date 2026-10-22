@@ -249,7 +249,7 @@ export default function ConversionCTA() {
       id="contacto"
       data-testid="conversion-cta"
       aria-labelledby="cta-heading"
-      className="scroll-mt-4 md:px-3 md:py-14 lg:px-6 lg:py-20"
+      className="scroll-mt-4 md:px-3 md:py-12 lg:px-6 lg:py-16"
     >
       <button
         type="button"
@@ -271,7 +271,7 @@ export default function ConversionCTA() {
 
       <div
         id="cta-content"
-        className={open ? "px-3 pb-14 pt-8 md:p-0" : "hidden md:block"}
+        className={open ? "px-3 pb-10 pt-8 md:p-0" : "hidden md:block"}
       >
         <div className="mx-auto max-w-3xl text-center">
           <p className="hidden text-xs font-semibold uppercase tracking-widest text-muted md:block">
@@ -290,7 +290,7 @@ export default function ConversionCTA() {
           </p>
         </div>
 
-        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
+        <div className="mx-auto mt-8 grid max-w-[1000px] md:mt-10 grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
           <div className="flex flex-col rounded-2xl border border-white/10 bg-zinc-950 p-6 text-white transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_36px_-6px_rgba(255,234,0,0.45)]">
             <h3 className="text-lg font-bold">Consulta Directa</h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">

@@ -48,7 +48,7 @@ export default function Hero({
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-transparent" />
       </div>
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-start px-5 py-10 sm:justify-end sm:px-8 sm:py-10 lg:justify-center lg:px-10 lg:py-16">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-start px-5 py-10 sm:justify-end sm:px-8 sm:py-10 lg:justify-center lg:px-10 lg:py-6">
         <div className="w-full text-left sm:w-[45%]">
           <div className="w-full sm:w-fit sm:max-w-full">
             <motion.p

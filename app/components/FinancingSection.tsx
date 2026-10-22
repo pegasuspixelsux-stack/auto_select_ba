@@ -63,7 +63,7 @@ export default function FinancingSection() {
       id="financiacion"
       data-testid="financing-section"
       aria-labelledby="financing-heading"
-      className="scroll-mt-4 md:px-3 md:pb-14 md:pt-10 lg:px-6 lg:pb-20 lg:pt-20"
+      className="scroll-mt-4 md:px-3 md:py-12 lg:px-6 lg:py-16"
     >
       <button
         type="button"
@@ -85,7 +85,7 @@ export default function FinancingSection() {
 
       <div
         id="financing-content"
-        className={open ? "px-3 pt-8 md:px-0 md:pt-0" : "hidden md:block"}
+        className={open ? "px-3 pb-10 pt-8 md:p-0" : "hidden md:block"}
       >
         <div className="mx-auto max-w-3xl text-center">
           <p className="hidden text-xs font-semibold uppercase tracking-widest text-muted md:block">
@@ -103,7 +103,7 @@ export default function FinancingSection() {
           </p>
         </div>
 
-        <ul className="mx-auto mt-10 grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6">
+        <ul className="mx-auto mt-8 grid max-w-[1440px] md:mt-10 grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6">
           {OPTIONS.map(({ icon: Icon, title, description, badge }) => (
             <li
               key={title}
@@ -125,7 +125,7 @@ export default function FinancingSection() {
           ))}
         </ul>
 
-        <div className="mt-10 flex justify-center">
+        <div className="mt-8 flex justify-center md:mt-10">
           <a
             href={WHATSAPP_URL}
             target="_blank"
