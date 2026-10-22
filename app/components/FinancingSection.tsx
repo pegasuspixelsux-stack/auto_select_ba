@@ -63,42 +63,46 @@ export default function FinancingSection() {
       id="financiacion"
       data-testid="financing-section"
       aria-labelledby="financing-heading"
-      className="scroll-mt-4 px-3 py-14 lg:px-6 lg:py-20"
+      className="scroll-mt-4 md:px-3 md:pb-14 md:pt-10 lg:px-6 lg:pb-20 lg:pt-20"
     >
-      <div className="mx-auto max-w-3xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest text-muted">
-          Facilidades de pago
-        </p>
-        <h2
-          id="financing-heading"
-          className="mt-2 text-balance text-3xl font-semibold tracking-[-0.02em] lg:text-4xl"
-        >
-          Financiación y Permutas a tu medida
-        </h2>
-        <p className="mt-3 text-sm font-medium text-muted sm:text-base">
-          Elegí la opción que mejor se adapte a tu compra y coordiná tu visita
-          al salón de ventas.
-        </p>
-      </div>
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls="financing-content"
+        data-testid="financing-toggle"
+        onClick={() => setOpen((o) => !o)}
+        className="flex w-full items-center justify-between gap-4 border-y border-line px-3 py-4 text-left md:hidden"
+      >
+        <span className="text-xs font-medium uppercase tracking-widest text-fg">
+          Opciones de pago
+        </span>
+        <ChevronDown
+          aria-hidden
+          strokeWidth={1.75}
+          className={`h-5 w-5 shrink-0 text-muted transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
 
-      <div className="mt-6 flex justify-center md:hidden">
-        <button
-          type="button"
-          aria-expanded={open}
-          aria-controls="financing-content"
-          onClick={() => setOpen((o) => !o)}
-          className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-fg transition-[border-color,transform] duration-150 hover:border-fg/40 active:scale-95"
-        >
-          {open ? "Ocultar opciones" : "Ver opciones de pago"}
-          <ChevronDown
-            className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-            strokeWidth={1.75}
-            aria-hidden
-          />
-        </button>
-      </div>
+      <div
+        id="financing-content"
+        className={open ? "px-3 pt-8 md:px-0 md:pt-0" : "hidden md:block"}
+      >
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="hidden text-xs font-semibold uppercase tracking-widest text-muted md:block">
+            Opciones de pago
+          </p>
+          <h2
+            id="financing-heading"
+            className="text-balance text-3xl font-semibold tracking-[-0.02em] md:mt-2 lg:text-4xl"
+          >
+            Financiación y Permutas a tu medida
+          </h2>
+          <p className="mt-3 text-sm font-medium text-muted sm:text-base">
+            Elegí la opción que mejor se adapte a tu compra y coordiná tu visita
+            al salón de ventas.
+          </p>
+        </div>
 
-      <div id="financing-content" className={open ? "" : "hidden md:block"}>
         <ul className="mx-auto mt-10 grid max-w-[1440px] grid-cols-1 gap-4 md:grid-cols-3 lg:gap-6">
           {OPTIONS.map(({ icon: Icon, title, description, badge }) => (
             <li

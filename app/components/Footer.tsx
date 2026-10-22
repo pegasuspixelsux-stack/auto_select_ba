@@ -103,9 +103,9 @@ export default function Footer() {
           <div className="col-span-2 lg:col-span-1">
             <Logo />
             <p className="mt-5 max-w-xs text-sm leading-relaxed text-muted">
-              La plataforma para comprar y vender autos en Uruguay. Conectamos
-              vendedores particulares y concesionarias verificadas con
-              compradores.
+              Plataforma de venta de autos usados certificados, con salón de ventas
+              en Tigre, Zona Norte. Visitanos, probá la unidad y llevátela con
+              tranquilidad.
             </p>
             <p className="mt-5 text-xs text-subtle">
               © 2026 AUTO SELECT. Todos los derechos reservados.
@@ -180,18 +180,27 @@ export default function Footer() {
           className="mt-16 max-w-4xl space-y-2 border-t border-line pt-8 text-xs leading-relaxed text-subtle"
         >
           <p>
-            AUTO SELECT es una plataforma de publicación de avisos. No vendemos
-            vehículos ni participamos en las operaciones entre compradores y
-            vendedores.
+            AUTO SELECT es una plataforma de publicidad. Nuestra única función
+            es publicar los avisos de la concesionaria. No somos parte de la
+            compraventa, no intervenimos en la negociación, el pago, la entrega
+            ni la transferencia de los vehículos, y no actuamos como
+            vendedores, intermediarios ni garantes.
           </p>
           <p>
-            La información, las fotos y los precios de cada aviso son publicados
-            por vendedores particulares y concesionarias, y no garantizamos que
-            sean exactos, completos ni estén actualizados. No nos hacemos
-            responsables por errores, omisiones ni por el estado, la titularidad
-            o la documentación de los vehículos. Antes de concretar cualquier
-            operación, verificá los datos directamente con el vendedor y revisá
-            el vehículo y su documentación.
+            Los vehículos, la información, las fotos y los precios publicados
+            son de exclusiva responsabilidad de la concesionaria. AUTO SELECT no
+            garantiza su exactitud ni su actualización, y no asume
+            responsabilidad por el estado, la titularidad, la documentación, el
+            kilometraje, las condiciones de venta ni cualquier otro aspecto de
+            los vehículos publicados, ni por los daños o perjuicios que puedan
+            derivarse de una operación.
+          </p>
+          <p>
+            Es derecho y deber del comprador verificar por su cuenta toda la
+            información, inspeccionar el vehículo, revisar su documentación y
+            sus antecedentes, y completar la transacción de manera legal y
+            honesta, directamente con la concesionaria. Cualquier reclamo debe
+            dirigirse a la concesionaria.
           </p>
         </div>
 

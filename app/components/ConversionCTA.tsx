@@ -249,42 +249,47 @@ export default function ConversionCTA() {
       id="contacto"
       data-testid="conversion-cta"
       aria-labelledby="cta-heading"
-      className="scroll-mt-4 px-3 py-14 lg:px-6 lg:py-20"
+      className="scroll-mt-4 md:px-3 md:py-14 lg:px-6 lg:py-20"
     >
-      <div className="mx-auto max-w-3xl text-center">
-        <p className="text-xs font-semibold uppercase tracking-widest text-muted">
-          Último paso
-        </p>
-        <h2
-          id="cta-heading"
-          className="mt-2 text-balance text-3xl font-semibold tracking-[-0.02em] lg:text-4xl"
-        >
-          ¿Listo para manejar tu próximo auto?
-        </h2>
-        <p className="mt-3 text-sm font-medium text-muted sm:text-base">
-          Coordiná tu visita a nuestro salón de ventas en Zona Norte (Tigre) para ver
-          la unidad, realizar una prueba de manejo o cerrar la compra.
-        </p>
-      </div>
+      <button
+        type="button"
+        aria-expanded={open}
+        aria-controls="cta-content"
+        data-testid="cta-toggle"
+        onClick={() => setOpen((o) => !o)}
+        className="flex w-full items-center justify-between gap-4 border-y border-line px-3 py-4 text-left md:hidden"
+      >
+        <span className="text-xs font-medium uppercase tracking-widest text-fg">
+          Contacto
+        </span>
+        <ChevronDown
+          aria-hidden
+          strokeWidth={1.75}
+          className={`h-5 w-5 shrink-0 text-muted transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+        />
+      </button>
 
-      <div className="mt-6 flex justify-center md:hidden">
-        <button
-          type="button"
-          aria-expanded={open}
-          aria-controls="cta-content"
-          onClick={() => setOpen((o) => !o)}
-          className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-fg transition-[border-color,transform] duration-150 hover:border-fg/40 active:scale-95"
-        >
-          {open ? "Ocultar opciones" : "Ver opciones de contacto"}
-          <ChevronDown
-            className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
-            strokeWidth={1.75}
-            aria-hidden
-          />
-        </button>
-      </div>
+      <div
+        id="cta-content"
+        className={open ? "px-3 pb-14 pt-8 md:p-0" : "hidden md:block"}
+      >
+        <div className="mx-auto max-w-3xl text-center">
+          <p className="hidden text-xs font-semibold uppercase tracking-widest text-muted md:block">
+            Último paso
+          </p>
+          <h2
+            id="cta-heading"
+            className="text-balance text-3xl font-semibold tracking-[-0.02em] md:mt-2 lg:text-4xl"
+          >
+            ¿Listo para manejar tu próximo auto?
+          </h2>
+          <p className="mt-3 text-sm font-medium text-muted sm:text-base">
+            Coordiná tu visita a nuestro salón de ventas en Zona Norte (Tigre)
+            para ver la unidad, realizar una prueba de manejo o cerrar la
+            compra.
+          </p>
+        </div>
 
-      <div id="cta-content" className={open ? "" : "hidden md:block"}>
         <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
           <div className="flex flex-col rounded-2xl border border-white/10 bg-zinc-950 p-6 text-white transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_36px_-6px_rgba(255,234,0,0.45)]">
             <h3 className="text-lg font-bold">Consulta Directa</h3>

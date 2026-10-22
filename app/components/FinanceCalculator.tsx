@@ -110,7 +110,7 @@ export default function FinanceCalculator({
       id="calculadora"
       data-testid="finance-calculator"
       aria-labelledby="calculator-heading"
-      className="scroll-mt-4 pt-10 lg:px-6 lg:pb-24"
+      className="scroll-mt-4 lg:px-6 lg:pb-24 lg:pt-10"
     >
       <button
         type="button"
