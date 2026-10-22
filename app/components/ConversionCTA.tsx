@@ -291,7 +291,7 @@ export default function ConversionCTA() {
         </div>
 
         <div className="mx-auto mt-8 grid max-w-[1000px] md:mt-10 grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
-          <div className="flex flex-col rounded-2xl border border-white/10 bg-zinc-950 p-6 text-white transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_36px_-6px_rgba(255,234,0,0.45)]">
+          <div className="card-glow card-glow-dark flex flex-col rounded-2xl border border-white/10 bg-zinc-950 p-6 text-white motion-safe:hover:scale-[1.02]">
             <h3 className="text-lg font-bold">Consulta Directa</h3>
             <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
               Escribinos directamente para sacarte dudas en el acto.
@@ -312,7 +312,7 @@ export default function ConversionCTA() {
             </a>
           </div>
 
-          <div className="flex flex-col rounded-2xl border border-white/10 bg-zinc-950 p-6 text-white transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_36px_-6px_rgba(255,234,0,0.45)]">
+          <div className="card-glow card-glow-dark flex flex-col rounded-2xl border border-white/10 bg-zinc-950 p-6 text-white motion-safe:hover:scale-[1.02]">
             <h3 className="text-lg font-bold">
               Reserva de Turno &amp; Qualify
             </h3>

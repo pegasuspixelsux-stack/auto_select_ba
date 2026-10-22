@@ -41,9 +41,9 @@ export default function HeroSearch() {
             data-testid="hero-search"
             className="mt-2.5 sm:mt-4"
           >
-            <div className="flex items-center gap-3 rounded-full border border-line bg-surface py-2 pl-5 pr-2 shadow-[0_10px_30px_-6px_rgba(0,0,0,0.45)] transition-[transform,box-shadow] duration-300 ease-out hover:shadow-[0_16px_40px_-8px_rgba(0,0,0,0.55)] focus-within:border-fg/40 motion-reduce:transition-none">
+            <div className="flex items-center gap-3 rounded-full border border-line bg-surface [:root:not([data-theme=light])_&]:border-white [:root:not([data-theme=light])_&]:bg-white py-2 pl-5 pr-2 shadow-[0_10px_30px_-6px_rgba(0,0,0,0.45)] transition-[transform,box-shadow] duration-300 ease-out hover:shadow-[0_16px_40px_-8px_rgba(0,0,0,0.55)] focus-within:border-fg/40 motion-reduce:transition-none">
               <Search
-                className="h-4 w-4 shrink-0 text-muted"
+                className="h-4 w-4 shrink-0 text-muted [:root:not([data-theme=light])_&]:text-zinc-500"
                 strokeWidth={1.5}
               />
               <input
@@ -51,7 +51,7 @@ export default function HeroSearch() {
                 name="q"
                 aria-label="Buscar en el inventario"
                 placeholder="Buscá por marca, modelo o palabra clave"
-                className="w-full bg-transparent text-sm text-fg outline-none placeholder:text-subtle"
+                className="w-full bg-transparent text-sm text-fg [:root:not([data-theme=light])_&]:text-black outline-none placeholder:text-subtle [:root:not([data-theme=light])_&]:placeholder:text-zinc-500"
               />
               <button
                 type="button"
@@ -59,7 +59,7 @@ export default function HeroSearch() {
                 aria-controls="advanced-search"
                 data-testid="hero-filters-toggle"
                 onClick={() => setFiltersOpen((open) => !open)}
-                className="flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium text-muted transition-[color,transform] duration-150 hover:text-fg active:scale-95"
+                className="flex shrink-0 items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-medium text-muted [:root:not([data-theme=light])_&]:text-zinc-600 transition-[color,transform] duration-150 hover:text-fg [:root:not([data-theme=light])_&]:hover:text-black active:scale-95"
               >
                 <SlidersHorizontal className="h-3.5 w-3.5" strokeWidth={1.75} />
                 <span className="hidden sm:inline">Filtros</span>
@@ -71,7 +71,7 @@ export default function HeroSearch() {
               <button
                 type="submit"
                 aria-label="Buscar"
-                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-inverse text-on-inverse transition-[transform,opacity] duration-150 ease-out hover:opacity-85 active:scale-95"
+                className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-inverse text-on-inverse [:root:not([data-theme=light])_&]:bg-black [:root:not([data-theme=light])_&]:text-white transition-[transform,opacity] duration-150 ease-out hover:opacity-85 active:scale-95"
               >
                 <ArrowRight className="h-4 w-4" strokeWidth={1.75} />
               </button>

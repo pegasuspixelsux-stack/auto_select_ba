@@ -107,7 +107,7 @@ export default function FinancingSection() {
           {OPTIONS.map(({ icon: Icon, title, description, badge }) => (
             <li
               key={title}
-              className="flex flex-col rounded-2xl border border-line bg-surface p-6 shadow-[var(--card-shadow)] backdrop-blur-md transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:scale-[1.02] [:root:not([data-theme=light])_&]:hover:border-brand/50 [:root:not([data-theme=light])_&]:hover:shadow-[0_0_36px_-6px_rgba(255,234,0,0.45)] hover:shadow-[0_24px_48px_-12px_rgba(0,0,0,0.5)]"
+              className="card-glow flex flex-col rounded-2xl border border-line bg-surface p-6 shadow-[var(--card-shadow)] backdrop-blur-md motion-safe:hover:scale-[1.02]"
             >
               <span className="flex h-11 w-11 items-center justify-center rounded-xl border border-line text-blue-500">
                 <Icon className="h-5 w-5" strokeWidth={1.75} aria-hidden />
