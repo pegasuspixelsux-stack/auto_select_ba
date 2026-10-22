@@ -35,7 +35,7 @@ export default function Hero({
   return (
     <section
       data-testid="hero"
-      className="hero-on-photo relative flex w-full flex-col sm:h-[calc((100svh_-_290px)_*_0.7)] sm:min-h-[420px] lg:h-[calc((100svh_-_290px)_*_1.155)] lg:min-h-[554px] overflow-hidden bg-bg text-fg selection:bg-fg selection:text-bg"
+      className="hero-on-photo relative flex min-h-[352px] w-full flex-col sm:h-[calc((100svh_-_290px)_*_0.56)] sm:min-h-[336px] lg:h-[calc((100svh_-_290px)_*_0.924)] lg:min-h-[443px] overflow-hidden bg-bg text-fg selection:bg-fg selection:text-bg"
     >
       <div className="absolute inset-0 z-0">
         <Image
@@ -48,8 +48,8 @@ export default function Hero({
         />
         <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
       </div>
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-center px-3 pb-6 pt-[calc(1.5rem+10vw)] sm:justify-end sm:py-6 lg:justify-center lg:px-6 lg:py-14">
-        <div className="w-1/2 text-left sm:w-[45%]">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-start px-3 py-6 sm:justify-end sm:py-6 lg:justify-center lg:px-6 lg:py-14">
+        <div className="w-full text-left sm:w-[45%]">
           <div className="w-fit max-w-full">
             <motion.p
               {...rise(0.05, 12)}

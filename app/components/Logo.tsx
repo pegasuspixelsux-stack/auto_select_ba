@@ -5,7 +5,7 @@ export default function Logo({ className = "" }: { className?: string }) {
       className={`text-[21px] font-bold uppercase tracking-[-0.02em] lg:text-[23px] ${className}`}
     >
       Tu Próximo
-      <span className="ml-[0.25em] bg-brand px-1.5 py-0.5 text-black [:root[data-theme=light]_&]:bg-inverse [:root[data-theme=light]_&]:text-on-inverse">
+      <span className="ml-[0.25em] bg-black px-1.5 py-0.5 text-brand">
         Auto
       </span>
     </span>
