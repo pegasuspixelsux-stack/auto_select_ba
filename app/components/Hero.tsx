@@ -46,11 +46,11 @@ export default function Hero({
           sizes="100vw"
           className="object-cover object-[50%_75%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/85 via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/30 to-transparent" />
       </div>
-      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-start px-3 py-6 sm:justify-end sm:py-6 lg:justify-center lg:px-6 lg:py-14">
+      <div className="relative z-10 mx-auto flex w-full max-w-[1440px] flex-1 flex-col justify-start px-5 py-10 sm:justify-end sm:px-8 sm:py-10 lg:justify-center lg:px-10 lg:py-16">
         <div className="w-full text-left sm:w-[45%]">
-          <div className="w-fit max-w-full">
+          <div className="w-full sm:w-fit sm:max-w-full">
             <motion.p
               {...rise(0.05, 12)}
               className="mb-2 flex items-center gap-2 text-[10px] font-semibold uppercase tracking-widest text-fg sm:mb-3 sm:text-xs"
@@ -75,26 +75,28 @@ export default function Hero({
             </motion.h1>
             <motion.p
               {...rise(0.28)}
-              className="mt-2 w-0 min-w-full text-xs leading-relaxed sm:mt-5 sm:text-xl text-muted"
+              className="mt-2 w-1/2 text-xs leading-relaxed sm:mt-5 sm:w-0 sm:min-w-full sm:text-xl text-muted"
             >
               {subheadline}
             </motion.p>
             <motion.div
               {...rise(0.4)}
               data-testid="hero-rating"
-              className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px] text-muted sm:mt-5 sm:text-sm"
+              className="mt-3 flex flex-col items-start gap-1 text-[11px] sm:flex-row sm:flex-wrap sm:items-center sm:gap-x-2 text-muted sm:mt-5 sm:text-sm"
             >
-              <span className="font-semibold text-fg">{RATING}</span>
-              <span aria-hidden className="flex gap-0.5 text-amber-400">
-                {Array.from({ length: 5 }, (_, i) => (
-                  <Star
-                    key={i}
-                    className="h-3 w-3 fill-current sm:h-4 sm:w-4"
-                    strokeWidth={0}
-                  />
-                ))}
+              <span className="flex items-center gap-2">
+                <span className="font-semibold text-fg">{RATING}</span>
+                <span aria-hidden className="flex gap-0.5 text-amber-400">
+                  {Array.from({ length: 5 }, (_, i) => (
+                    <Star
+                      key={i}
+                      className="h-3 w-3 fill-current sm:h-4 sm:w-4"
+                      strokeWidth={0}
+                    />
+                  ))}
+                </span>
+                <span className="sr-only">{RATING} de 5 estrellas</span>
               </span>
-              <span className="sr-only">{RATING} de 5 estrellas</span>
               <span>{REVIEW_COUNT} reseñas en Google</span>
             </motion.div>
           </div>
