@@ -1,6 +1,7 @@
 import { Mail, MessageCircle } from "lucide-react";
 import type { ReactNode } from "react";
 import Logo from "./Logo";
+import { NAV_LINKS, NAV_RIGHT_LINKS } from "./navLinks";
 import ThemeToggle from "./ThemeToggle";
 
 interface FooterColumn {
@@ -11,12 +12,8 @@ interface FooterColumn {
 const COLUMNS: FooterColumn[] = [
   {
     title: "Navegación",
-    links: [
-      { label: "Comprar", href: "/autos" },
-      { label: "Publicá tu Auto", href: "/#publicar" },
-      { label: "Concesionarias", href: "/concesionarias" },
-      { label: "Nosotros", href: "#" },
-    ],
+    // Same links as the top nav.
+    links: [...NAV_LINKS, ...NAV_RIGHT_LINKS],
   },
   {
     title: "Legales & Ayuda",
