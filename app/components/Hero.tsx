@@ -23,7 +23,7 @@ export default function Hero({
       que te falta.
     </>
   ),
-  subheadline = "Unidades seleccionadas y verificadas con atención personalizada en showroom. Coordiná tu prueba de manejo hoy.",
+  subheadline = "Unidades seleccionadas y verificadas con atención personalizada en nuestro salón de ventas. Coordiná tu prueba de manejo hoy.",
 }: HeroProps) {
   const reduce = useReducedMotion();
   const rise = (delay: number, y = 16) => ({

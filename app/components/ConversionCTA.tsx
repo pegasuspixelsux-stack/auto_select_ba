@@ -1,6 +1,6 @@
 "use client";
 
-import { CalendarCheck, MessageCircle, X } from "lucide-react";
+import { CalendarCheck, ChevronDown, MessageCircle, X } from "lucide-react";
 import { useEffect, useState, type FormEvent, type ReactNode } from "react";
 
 // Placeholder shared with the footer; replace with the real number.
@@ -132,7 +132,7 @@ function AppointmentModal({ onClose }: { onClose: () => void }) {
         <div className="flex items-start justify-between gap-4">
           <div>
             <h3 id="appointment-title" className="text-xl font-semibold">
-              Agendar cita en showroom
+              Agendar cita en el salón de ventas
             </h3>
             <p className="mt-1 text-xs text-zinc-400">
               Completá los datos y te respondemos por WhatsApp.
@@ -150,7 +150,12 @@ function AppointmentModal({ onClose }: { onClose: () => void }) {
 
         <form onSubmit={handleSubmit} className="mt-5 flex flex-col gap-4">
           <Field label="Vehículo">
-            <select name="car" required defaultValue={CARS[0]} className={INPUT}>
+            <select
+              name="car"
+              required
+              defaultValue={CARS[0]}
+              className={INPUT}
+            >
               {CARS.map((car) => (
                 <option key={car}>{car}</option>
               ))}
@@ -173,7 +178,11 @@ function AppointmentModal({ onClose }: { onClose: () => void }) {
               />
             </Field>
             <Field label="Horario">
-              <select name="time" defaultValue={TIME_SLOTS[0]} className={INPUT}>
+              <select
+                name="time"
+                defaultValue={TIME_SLOTS[0]}
+                className={INPUT}
+              >
                 {TIME_SLOTS.map((slot) => (
                   <option key={slot}>{slot}</option>
                 ))}
@@ -224,6 +233,17 @@ function AppointmentModal({ onClose }: { onClose: () => void }) {
 export default function ConversionCTA() {
   const [open, setOpen] = useState(false);
 
+  // Expand when a link or the URL points at this section (collapsed on mobile).
+  useEffect(() => {
+    const expand = () => {
+      if (window.location.hash === "#contacto") setOpen(true);
+    };
+    expand();
+    window.addEventListener("hashchange", expand);
+    return () => window.removeEventListener("hashchange", expand);
+  }, []);
+  const [modalOpen, setModalOpen] = useState(false);
+
   return (
     <section
       id="contacto"
@@ -242,48 +262,77 @@ export default function ConversionCTA() {
           ¿Listo para manejar tu próximo auto?
         </h2>
         <p className="mt-3 text-sm font-medium text-muted sm:text-base">
-          Coordiná tu visita a nuestro showroom en Zona Norte (Tigre) para ver
+          Coordiná tu visita a nuestro salón de ventas en Zona Norte (Tigre) para ver
           la unidad, realizar una prueba de manejo o cerrar la compra.
         </p>
       </div>
 
-      <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
-        <div className="flex flex-col rounded-2xl border border-white/10 bg-zinc-950 p-6 text-white transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_36px_-6px_rgba(255,234,0,0.45)]">
-          <h3 className="text-lg font-bold">Consulta Directa</h3>
-          <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
-            Escribinos directamente para sacarte dudas en el acto.
-          </p>
-          <a
-            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(GENERIC_MESSAGE)}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-testid="cta-whatsapp"
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-zinc-950 transition-[background-color,transform] duration-150 hover:bg-emerald-400 active:scale-95"
-          >
-            <MessageCircle className="h-4 w-4" strokeWidth={1.75} aria-hidden />
-            Hablar por WhatsApp Ya
-          </a>
-        </div>
+      <div className="mt-6 flex justify-center md:hidden">
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls="cta-content"
+          onClick={() => setOpen((o) => !o)}
+          className="inline-flex items-center gap-2 rounded-full border border-line px-5 py-2.5 text-xs font-semibold uppercase tracking-wider text-fg transition-[border-color,transform] duration-150 hover:border-fg/40 active:scale-95"
+        >
+          {open ? "Ocultar opciones" : "Ver opciones de contacto"}
+          <ChevronDown
+            className={`h-4 w-4 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+            strokeWidth={1.75}
+            aria-hidden
+          />
+        </button>
+      </div>
 
-        <div className="flex flex-col rounded-2xl border border-white/10 bg-zinc-950 p-6 text-white transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_36px_-6px_rgba(255,234,0,0.45)]">
-          <h3 className="text-lg font-bold">Reserva de Turno &amp; Qualify</h3>
-          <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
-            Seleccioná la unidad, día, hora y método de pago para reservar tu
-            lugar.
-          </p>
-          <button
-            type="button"
-            data-testid="cta-open-modal"
-            onClick={() => setOpen(true)}
-            className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-[background-color,transform] duration-150 hover:bg-sky-500 active:scale-95"
-          >
-            <CalendarCheck className="h-4 w-4" strokeWidth={1.75} aria-hidden />
-            Agendar Cita en Showroom
-          </button>
+      <div id="cta-content" className={open ? "" : "hidden md:block"}>
+        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 gap-4 md:grid-cols-2 lg:gap-6">
+          <div className="flex flex-col rounded-2xl border border-white/10 bg-zinc-950 p-6 text-white transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_36px_-6px_rgba(255,234,0,0.45)]">
+            <h3 className="text-lg font-bold">Consulta Directa</h3>
+            <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
+              Escribinos directamente para sacarte dudas en el acto.
+            </p>
+            <a
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(GENERIC_MESSAGE)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              data-testid="cta-whatsapp"
+              className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-emerald-500 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-zinc-950 transition-[background-color,transform] duration-150 hover:bg-emerald-400 active:scale-95"
+            >
+              <MessageCircle
+                className="h-4 w-4"
+                strokeWidth={1.75}
+                aria-hidden
+              />
+              Hablar por WhatsApp Ya
+            </a>
+          </div>
+
+          <div className="flex flex-col rounded-2xl border border-white/10 bg-zinc-950 p-6 text-white transition-[transform,box-shadow,border-color] duration-300 ease-out motion-safe:hover:scale-[1.02] hover:border-brand/50 hover:shadow-[0_0_36px_-6px_rgba(255,234,0,0.45)]">
+            <h3 className="text-lg font-bold">
+              Reserva de Turno &amp; Qualify
+            </h3>
+            <p className="mt-2 flex-1 text-sm leading-relaxed text-zinc-400">
+              Seleccioná la unidad, día, hora y método de pago para reservar tu
+              lugar.
+            </p>
+            <button
+              type="button"
+              data-testid="cta-open-modal"
+              onClick={() => setModalOpen(true)}
+              className="mt-6 inline-flex items-center justify-center gap-2 rounded-full bg-sky-600 px-6 py-3 text-xs font-semibold uppercase tracking-wider text-white transition-[background-color,transform] duration-150 hover:bg-sky-500 active:scale-95"
+            >
+              <CalendarCheck
+                className="h-4 w-4"
+                strokeWidth={1.75}
+                aria-hidden
+              />
+              Agendar Cita en el Salón
+            </button>
+          </div>
         </div>
       </div>
 
-      {open && <AppointmentModal onClose={() => setOpen(false)} />}
+      {modalOpen && <AppointmentModal onClose={() => setModalOpen(false)} />}
     </section>
   );
 }
